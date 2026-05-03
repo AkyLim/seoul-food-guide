@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>서울 명동 미식 가이드 / ソウル明洞グルメガイド</title>
+<style>
+  :root {
+    --primary: #B8351A;
+    --primary-soft: #FFE9DD;
+    --bg: #FDF8F1;
+    --card: #FFFFFF;
+    --text: #2A2A2A;
+    --muted: #6B6B6B;
+    --line: #ECDFC9;
+    --accent: #2B6E4F;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+                 "Apple SD Gothic Neo", "Yu Gothic", "Meiryo", "Malgun Gothic", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-text-size-adjust: 100%;
+  }
+  /* ===== Top bar ===== */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 10px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-size: 17px; font-weight: 800; color: var(--primary);
+    letter-spacing: -0.3px;
+  }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; }
+  .toggle {
+    display: inline-flex;
+    background: #F1E7D6;
+    border-radius: 999px;
+    padding: 4px;
+  }
+  .toggle button {
+    border: 0; background: transparent; cursor: pointer;
+    padding: 9px 16px; font-size: 15px; font-weight: 700;
+    border-radius: 999px; color: #6B5A40;
+    min-width: 56px;
+  }
+  .toggle button.active {
+    background: var(--primary); color: #fff;
+    box-shadow: 0 2px 6px rgba(184,53,26,.25);
+  }
+  .toggle-label {
+    font-size: 12px; color: var(--muted);
+    align-self: center; margin-right: 4px;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 36px 20px 28px;
+    text-align: center;
+    background: linear-gradient(160deg, #FFE6D2 0%, #FDF8F1 80%);
+  }
+  .hero h1 {
+    font-size: 30px; line-height: 1.3;
+    margin: 0 0 10px; color: var(--primary);
+  }
+  .hero p { margin: 6px 0; font-size: 17px; color: #4A4A4A; }
+  .hero .badge {
+    display: inline-block; margin-top: 14px;
+    background: #fff; border: 1px solid var(--line);
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 14px; color: var(--muted);
+  }
+
+  /* ===== Sections ===== */
+  main { max-width: 760px; margin: 0 auto; padding: 8px 16px 24px; }
+  section.theme { padding: 28px 0 8px; }
+  .theme-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    background: var(--primary-soft);
+    border-radius: 14px;
+    margin-bottom: 16px;
+  }
+  .theme-icon { font-size: 28px; }
+  .theme-title { font-size: 22px; font-weight: 800; color: var(--primary); margin: 0; }
+  .theme-sub { font-size: 14px; color: #7A5A48; margin: 2px 0 0; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.04);
+  }
+  .card-name {
+    font-size: 22px; font-weight: 800; margin: 0 0 2px;
+  }
+  .card-name-sub { font-size: 14px; color: var(--muted); margin: 0 0 10px; }
+
+  /* ===== Awards / Badges ===== */
+  .badges {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 0 0 14px;
+  }
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 11px; border-radius: 999px;
+    font-size: 12px; font-weight: 800;
+    letter-spacing: 0.3px; white-space: nowrap;
+    line-height: 1.3;
+  }
+  .badge-michelin { background: #B8351A; color: #fff; }
+  .badge-bluer    { background: #1E5BB8; color: #fff; }
+  .badge-since    { background: #6B4F2A; color: #fff; }
+  .badge-top      { background: #2B6E4F; color: #fff; }
+
+  /* ===== Tips (사이트 사용법) ===== */
+  section.tips {
+    max-width: 760px;
+    margin: 18px auto 0;
+    padding: 22px 18px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  }
+  .tips-title {
+    font-size: 20px;
+    margin: 0 0 14px;
+    color: var(--primary);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tips-list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .tips-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 16px; line-height: 1.65;
+  }
+  .tips-ic {
+    font-size: 22px; flex-shrink: 0; line-height: 1.3;
+    width: 28px; text-align: center;
+  }
+
+  /* ===== Compare box (평양/함흥) ===== */
+  .compare {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-bottom: 18px;
+  }
+  .compare-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 14px 12px;
+  }
+  .compare-item h4 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    color: var(--primary);
+  }
+  .compare-item p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 0 0 8px;
+    color: #3a3a3a;
+  }
+  .compare-where {
+    font-size: 12.5px;
+    color: var(--muted);
+    border-top: 1px dashed var(--line);
+    padding-top: 6px;
+  }
+  @media (max-width: 540px) {
+    .compare { grid-template-columns: 1fr; }
+  }
+  .row {
+    display: flex; gap: 8px; align-items: flex-start;
+    margin: 8px 0; font-size: 16px; color: #444;
+  }
+  .row .ic { font-size: 18px; flex-shrink: 0; line-height: 1.5; }
+  .reason {
+    background: #FFF4E8;
+    border-left: 4px solid var(--primary);
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .desc { font-size: 16px; line-height: 1.75; color: #3a3a3a; margin: 8px 0 14px; }
+  .map-btn {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; width: 100%;
+    background: var(--primary); color: #fff;
+    text-decoration: none; padding: 14px 16px;
+    border-radius: 12px; font-size: 17px; font-weight: 700;
+    box-shadow: 0 2px 8px rgba(184,53,26,.25);
+  }
+  .map-btn:active { transform: translateY(1px); }
+  .note {
+    font-size: 14px; color: #8a6a4a;
+    background: #FFF7EA; border: 1px dashed #E5C99A;
+    padding: 10px 14px; border-radius: 10px;
+    margin: 4px 0 16px;
+  }
+  .footer {
+    text-align: center; padding: 30px 16px 50px;
+    color: #999; font-size: 13px;
+  }
+
+  /* lang toggling */
+  .ko, .ja { display: none; }
+  body[data-lang="ko"] .ko { display: inline; }
+  body[data-lang="ko"] .ko-block { display: block; }
+  body[data-lang="ja"] .ja { display: inline; }
+  body[data-lang="ja"] .ja-block { display: block; }
+
+  @media (max-width: 480px) {
+    body { font-size: 17px; }
+    .hero h1 { font-size: 26px; }
+    .card-name { font-size: 20px; }
+    .theme-title { font-size: 20px; }
+  }
+</style>
+</head>
+<body data-lang="ko" data-map="naver">
+
+<div class="topbar">
+  <div class="brand">
+    <span class="ko">서울 명동 미식 가이드</span>
+    <span class="ja">ソウル明洞グルメガイド</span>
+  </div>
+  <div class="controls">
+    <div class="toggle" role="group" aria-label="language">
+      <button data-lang-btn="ko" class="active">한국어</button>
+      <button data-lang-btn="ja">日本語</button>
+    </div>
+    <div class="toggle" role="group" aria-label="map">
+      <button data-map-btn="naver" class="active">
+        <span class="ko">네이버</span><span class="ja">Naver</span>
+      </button>
+      <button data-map-btn="google" >
+        <span class="ko">구글</span><span class="ja">Google</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <h1>
+    <span class="ko">명동에서 즐기는<br/>한국의 진짜 맛</span>
+    <span class="ja">明洞で味わう<br/>本当の韓国の味</span>
+  </h1>
+  <p>
+    <span class="ko">육회 · 냉면 · 빵 · 간장게장</span>
+    <span class="ja">ユッケ・冷麺・パン・カンジャンケジャン</span>
+  </p>
+  <div class="badge">
+    <span class="ko">버튼을 누르면 지도로 바로 이동합니다</span>
+    <span class="ja">ボタンを押すと地図が開きます</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ 사이트 사용법 ============ -->
+  <section class="tips">
+    <h2 class="tips-title">
+      <span>📖</span>
+      <span class="ko">이 가이드 사용법</span>
+      <span class="ja">このガイドの使い方</span>
+    </h2>
+    <ul class="tips-list">
+      <li>
+        <span class="tips-ic">📌</span>
+        <div>
+          <span class="ko"><b>구성 ―</b> 카테고리마다 <b>명동에서 가까운 곳</b> 한 곳, <b>거리는 있지만 꼭 가볼 만한 유명한 곳</b> 한 곳, 이렇게 두 곳씩 골라 담았습니다.</span>
+          <span class="ja"><b>構成 ―</b> 各カテゴリーごとに、<b>明洞から近いお店</b>1軒と、<b>少し離れていても訪れる価値のある名店</b>1軒、計2軒ずつ厳選しました。</span>
+        </div>
+      </li>
+      <li>
+        <span class="tips-ic">⭐</span>
+        <div>
+          <span class="ko"><b>빨간 배지 ―</b> <b>미쉐린 가이드</b>·<b>블루리본 서베이</b> 등 권위 있는 평가 기관에 인정받은 식당에 표시했습니다. 갈색 배지는 오랜 노포(SINCE …)임을 나타냅니다.</span>
+          <span class="ja"><b>赤いバッジ ―</b> <b>ミシュランガイド</b>や<b>ブルーリボンサーベイ</b>など、信頼ある評価機関に認められたお店に付けています。茶色のバッジは長い歴史を持つ老舗（SINCE …）を表します。</span>
+        </div>
+      </li>
+      <li>
+        <span class="tips-ic">🌐</span>
+        <div>
+          <span class="ko"><b>우측 상단 [한국어 / 日本語] 버튼 ―</b> 화면 언어를 바꿉니다.</span>
+          <span class="ja"><b>右上の[한국어 / 日本語]ボタン ―</b> 画面の言語を切り替えます。</span>
+        </div>
+      </li>
+      <li>
+        <span class="tips-ic">🗺</span>
+        <div>
+          <span class="ko"><b>우측 상단 [네이버 / 구글] 버튼 ―</b> 사용할 지도 앱을 고릅니다. 그 다음 카드 아래의 <b>[지도로 길찾기]</b>를 누르면 선택한 앱으로 바로 연결됩니다.</span>
+          <span class="ja"><b>右上の[Naver / Google]ボタン ―</b> 使う地図アプリを選びます。そのあとカード下の<b>[地図で見る]</b>を押すと、選んだアプリがそのまま開きます。</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ 육회 / 소고기 ============ -->
+  <section class="theme">
+    <div class="theme-head">
+      <div class="theme-icon">🥩</div>
+      <div>
+        <h2 class="theme-title">
+          <span class="ko">육회 · 소고기</span>
+          <span class="ja">ユッケ・牛肉</span>
+        </h2>
+        <p class="theme-sub">
+          <span class="ko">신선한 한국식 생고기</span>
+          <span class="ja">新鮮な韓国式の生肉料理</span>
+        </p>
+      </div>
+    </div>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">육통령 명동본점</span>
+        <span class="ja">ユクトンリョン 明洞本店</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">YUKTONGRYEONG · Myeongdong</span>
+        <span class="ja">YUKTONGRYEONG · 明洞</span>
+      </p>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 중구 명동8나길 37-2</span>
+          <span class="ja">ソウル特別市 中区 明洞8ナギル 37-2</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="ic">🚇</span>
+        <span>
+          <span class="ko">명동역 8번 출구 도보 5분</span>
+          <span class="ja">明洞駅 8番出口から徒歩5分</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 명동역에서 가장 가까운 육회 전문점. 신선한 한우를 단 양념으로 무쳐내 비리지 않고 입에 부드럽게 감깁니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> 明洞駅から一番近いユッケ専門店。新鮮な韓牛を甘めのタレで和えており、生臭さがなく口当たりもやわらかです。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">대표 메뉴는 <b>육회비빔밥</b>과 <b>육사시미</b>. 처음 드시는 분이라면 따뜻한 밥과 함께 비벼 드시는 육회비빔밥이 부담 없습니다. 점심시간(12:00–13:30)은 줄이 길 수 있어 11:30 또는 14:00 이후 방문을 권합니다.</span>
+        <span class="ja">看板メニューは<b>ユッケビビンバ</b>と<b>ユッサシミ（牛刺し）</b>。初めての方は、温かいご飯と混ぜて食べるユッケビビンバが食べやすくおすすめです。ランチタイム（12:00〜13:30）は混むので、11:30前か14:00以降の来店が安心です。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://naver.me/xLNEeWFl"
+         data-google="https://www.google.com/maps/search/?api=1&query=%EC%9C%A1%ED%86%B5%EB%A0%B9+%EB%AA%85%EB%8F%99%EB%B3%B8%EC%A0%90"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">부촌육회 본관 — 광장시장</span>
+        <span class="ja">プチョンユッケ 本館 — 広蔵市場</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">한우 육회 전문 · 광장시장 60년 노포</span>
+        <span class="ja">韓牛ユッケ専門・広蔵市場の60年老舗</span>
+      </p>
+      <div class="badges">
+        <span class="badge-pill badge-michelin">⭐ MICHELIN BIB GOURMAND ’17–’22</span>
+        <span class="badge-pill badge-since">SINCE 1956</span>
+      </div>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 종로구 창경궁로 88, 광장시장 안</span>
+          <span class="ja">ソウル特別市 鍾路区 昌慶宮路 88（広蔵市場内）</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="ic">🚇</span>
+        <span>
+          <span class="ko">종로5가역 8번 출구 도보 2분 / 명동에서 택시 7분</span>
+          <span class="ja">鍾路5街駅 8番出口から徒歩2分/明洞からタクシーで約7分</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 광장시장 육회 골목을 대표하는 60년 노포. 미쉐린 가이드가 6년 연속 “합리적인 가격에 훌륭한 요리”로 인정한 곳입니다. 한국 전통시장의 분위기까지 함께 체험할 수 있어 명동 쇼핑과 다른 결의 추억이 됩니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> 広蔵市場のユッケ通りを代表する60年の老舗。ミシュランガイドが6年連続で「手頃な価格で素晴らしい料理」と認めたお店です。韓国の伝統市場の雰囲気もまるごと体験でき、明洞でのお買い物とは違う思い出になります。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">대표 메뉴는 <b>육회</b>와 <b>육사시미</b>, <b>탕탕이(산낙지)</b>. 양념이 강하지 않아 한우 본연의 맛을 즐기실 수 있습니다. 점심 시간(12:00–13:30)은 길게 줄을 서므로 11시 오픈 직후나 14시 이후 방문을 권합니다.</span>
+        <span class="ja">看板メニューは<b>ユッケ</b>と<b>ユッサシミ</b>、<b>タンタンイ（生きたタコ）</b>。タレが強くなく、韓牛本来の旨味を味わえます。ランチタイム（12:00〜13:30）は行列必至なので、11時の開店直後か14時以降の来店がおすすめです。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://map.naver.com/p/search/%EB%B6%80%EC%B4%8C%EC%9C%A1%ED%9A%8C%20%EB%B3%B8%EA%B4%80"
+         data-google="https://www.google.com/maps/search/?api=1&query=%EB%B6%80%EC%B4%8C%EC%9C%A1%ED%9A%8C+%EB%B3%B8%EA%B4%80+%EA%B4%91%EC%9E%A5%EC%8B%9C%EC%9E%A5"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+  </section>
+
+  <!-- ============ 냉면 ============ -->
+  <section class="theme">
+    <div class="theme-head">
+      <div class="theme-icon">🍜</div>
+      <div>
+        <h2 class="theme-title">
+          <span class="ko">냉면 (평양 · 함흥)</span>
+          <span class="ja">冷麺（ピョンヤン・ハムン）</span>
+        </h2>
+        <p class="theme-sub">
+          <span class="ko">한국 여름의 대표 면 요리</span>
+          <span class="ja">韓国の夏を代表する麺料理</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="compare-item">
+        <h4>
+          <span class="ko">평양냉면</span>
+          <span class="ja">平壌（ピョンヤン）冷麺</span>
+        </h4>
+        <p>
+          <span class="ko"><b>메밀</b>로 만든 부드러운 면을 <b>차갑고 맑은 소고기 육수</b>에 말아 먹는, 슴슴하고 담백한 한 그릇. 일본의 ‘맑은 국물 요리(澄んだ汁物)’와 결이 가까워 한국 처음 오신 분께도 부담 없습니다.</span>
+          <span class="ja"><b>そば粉</b>のやわらかい麺を<b>冷たく澄んだ牛骨スープ</b>に合わせる、上品であっさりした一杯。日本の“澄んだ汁物”に近い味わいで、韓国に初めて訪れる方にも食べやすいです。</span>
+        </p>
+        <div class="compare-where">
+          <span class="ko">예: 서관면옥 · 우래옥</span>
+          <span class="ja">例: ソグァンミョノク・ウレオク</span>
+        </div>
+      </div>
+      <div class="compare-item">
+        <h4>
+          <span class="ko">함흥냉면</span>
+          <span class="ja">咸興（ハムン）冷麺</span>
+        </h4>
+        <p>
+          <span class="ko"><b>감자·고구마 전분</b>으로 만든 매우 <b>쫄깃하고 질긴 면</b>에, <b>매콤달콤한 양념</b>을 비벼 먹는 비빔 스타일. 가오리회를 얹기도 합니다. 매운 것이 부담스러우시면 ‘물냉면’으로 주문 가능.</span>
+          <span class="ja"><b>じゃがいもやさつまいもの澱粉</b>で作る、<b>非常にコシの強い麺</b>に<b>甘辛いタレ</b>を絡めて食べるビビン（混ぜ）スタイル。エイの刺身をのせることも。辛さが苦手な方は「水冷麺（ムルネンミョン）」で注文可能です。</span>
+        </p>
+        <div class="compare-where">
+          <span class="ko">예: 곰냉면</span>
+          <span class="ja">例: コムネンミョン</span>
+        </div>
+      </div>
+    </div>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">서관면옥 — 신세계백화점 본점 14층</span>
+        <span class="ja">ソグァンミョノク — 新世界百貨店 本店 14階</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">평양냉면 · 담백한 맑은 육수</span>
+        <span class="ja">ピョンヤン冷麺・あっさり澄んだスープ</span>
+      </p>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 중구 퇴계로 77, 디 에스테이트 14층</span>
+          <span class="ja">ソウル特別市 中区 退渓路77 ザ・エステート 14階</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="ic">🚇</span>
+        <span>
+          <span class="ko">회현역 7번 출구 / 명동역에서 도보 8분</span>
+          <span class="ja">会賢（フェヒョン）駅 7番出口/明洞駅から徒歩8分</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 백화점 안에 있어 화장실·휴식 공간이 편리합니다. 평양냉면 특유의 맑고 슴슴한 맛이 일본의 그것(소면·우동 국물)과도 통하는 면이 있어 처음 드시는 분께 적합합니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> 百貨店内なのでお手洗いや休憩がとても便利。ピョンヤン冷麺ならではの澄んで上品な味わいは、日本のそうめんやうどんのつゆに通じる部分があり、初めての方にも食べやすいです。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">메밀면을 차가운 소고기 육수에 말아 먹습니다. 식초·겨자는 <b>먼저 한 입 맛본 뒤</b> 조금씩 더하시는 것을 추천합니다. <b>수육</b>(삶은 소고기)을 곁들이면 한 끼 식사로도 충분합니다.</span>
+        <span class="ja">そば粉の麺を冷たい牛だしに合わせていただきます。お酢・からしは<b>最初にひと口味わってから</b>少しずつ加えるのがおすすめ。<b>スユク</b>（茹で牛肉）を一緒に頼めば、立派な一食になります。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://naver.me/FIcYbcID"
+         data-google="https://www.google.com/maps/search/?api=1&query=%EC%84%9C%EA%B4%80%EB%A9%B4%EC%98%A5+%EC%8B%A0%EC%84%B8%EA%B3%84%EB%B0%B1%ED%99%94%EC%A0%90+%EB%B3%B8%EC%A0%90"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">우래옥 본점 — 을지로</span>
+        <span class="ja">ウレオク 本店 — 乙支路（ウルチロ）</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">한국 평양냉면의 ‘표준’</span>
+        <span class="ja">韓国ピョンヤン冷麺の“スタンダード”</span>
+      </p>
+      <div class="badges">
+        <span class="badge-pill badge-michelin">⭐ MICHELIN GUIDE ’22–’24</span>
+        <span class="badge-pill badge-since">SINCE 1946</span>
+      </div>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 중구 창경궁로 62-29</span>
+          <span class="ja">ソウル特別市 中区 昌慶宮路 62-29</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="ic">🚇</span>
+        <span>
+          <span class="ko">을지로4가역 4번 출구 도보 5분 / 명동에서 지하철 2정거장</span>
+          <span class="ja">乙支路4街駅 4番出口から徒歩5分/明洞から地下鉄2駅</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 한국 평양냉면의 ‘교본’이라 불리는 80년 노포. 미쉐린 가이드가 3년 연속 인정한 곳으로, 한국에 처음 오신 분이라면 반드시 한 번은 경험해야 할 ‘한국의 표준’ 한 그릇입니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> 韓国のピョンヤン冷麺の“お手本”と呼ばれる80年の老舗。ミシュランガイドが3年連続で認めた一軒で、初めて韓国を訪れる方にとって一度は味わうべき“韓国のスタンダード”の一杯です。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">한우 양지로 우려낸 깊고 맑은 육수가 일품. 일본의 맑은 국물 요리(소바 츠유, 오스이모노)에 익숙한 분께 자연스럽게 어울립니다. 함께 시키시면 좋은 메뉴는 <b>불고기</b>—구수한 단맛이 냉면과 잘 어울립니다. 평일 점심에도 줄이 있으니 11:30 이전 또는 14:00 이후 권장.</span>
+        <span class="ja">韓牛の胸肉で取った深く澄んだスープが絶品。日本の澄まし汁（そばつゆ・お吸い物）に親しまれた方には自然に馴染む味です。ぜひ合わせてほしいのは<b>プルコギ（焼肉）</b>。香ばしい甘みが冷麺とよく合います。平日のランチも行列ができるので、11:30前か14:00以降の来店がおすすめです。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://map.naver.com/p/search/%EC%9A%B0%EB%9E%98%EC%98%A5%20%EB%B3%B8%EC%A0%90"
+         data-google="https://www.google.com/maps/search/?api=1&query=%EC%9A%B0%EB%9E%98%EC%98%A5+%EB%B3%B8%EC%A0%90+%EC%9D%84%EC%A7%80%EB%A1%9C"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">곰냉면 남대문본점</span>
+        <span class="ja">コムネンミョン 南大門本店</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">함흥냉면 · 매콤·쫄깃</span>
+        <span class="ja">ハムン冷麺・ピリ辛＆コシ</span>
+      </p>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 중구 남대문시장길 29 1층 1호</span>
+          <span class="ja">ソウル特別市 中区 南大門市場ギル 29 1階 1号</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="ic">🚇</span>
+        <span>
+          <span class="ko">명동역에서 도보 10분 / 회현역 5번 출구 도보 3분</span>
+          <span class="ja">明洞駅から徒歩10分/会賢駅 5番出口から徒歩3分</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 평양냉면(맑은 국물)과 정반대 매력. 매콤한 양념을 비벼 먹는 함흥식 비빔냉면을 한 그릇 드시면, 두 종류의 차이를 비교해 보실 수 있습니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> ピョンヤン冷麺（澄んだスープ）とは正反対の魅力。ピリ辛のタレで混ぜて食べる咸興（ハムン）式のビビン冷麺を試せば、2種類の違いを比べられます。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">매운 것이 부담스러우시면 <b>물냉면</b>으로 주문 가능합니다. 면이 매우 질기므로 가위로 잘라 드시면 편합니다. 남대문 시장 안에 있어 식후 산책도 좋습니다.</span>
+        <span class="ja">辛いのが苦手な方は<b>水冷麺（ムルネンミョン）</b>で注文できます。麺は非常にコシが強いので、ハサミで切って召し上がるのが食べやすいです。南大門市場の中にあり、食後の散策にもぴったり。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://naver.me/xy7jF7xp"
+         data-google="https://www.google.com/maps/search/?api=1&query=%EA%B3%B0%EB%83%89%EB%A9%B4+%EB%82%A8%EB%8C%80%EB%AC%B8%EB%B3%B8%EC%A0%90"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+  </section>
+
+  <!-- ============ 빵 ============ -->
+  <section class="theme">
+    <div class="theme-head">
+      <div class="theme-icon">🥐</div>
+      <div>
+        <h2 class="theme-title">
+          <span class="ko">빵</span>
+          <span class="ja">パン</span>
+        </h2>
+        <p class="theme-sub">
+          <span class="ko">한국 동네 빵집의 정취</span>
+          <span class="ja">韓国の街のパン屋さんの趣</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="ko">※ <b>효자베이커리·쁘띠통</b>은 명동에서 약 4km 떨어진 <b>서촌</b>(택시 10–15분), <b>태극당</b>은 명동에서 지하철 한 정거장 거리의 <b>장충동</b>에 있습니다.</span>
+      <span class="ja">※ <b>ヒョジャベーカリー・プチトン</b>は明洞から約4km離れた<b>西村（ソチョン）</b>（タクシーで10〜15分）、<b>テグッタン</b>は明洞から地下鉄ひと駅の<b>奨忠洞（チャンチュンドン）</b>にあります。</span>
+    </div>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">효자베이커리</span>
+        <span class="ja">ヒョジャベーカリー（孝子ベーカリー）</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">50년 전통 동네 빵집</span>
+        <span class="ja">50年続く老舗の街のパン屋</span>
+      </p>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 종로구 필운대로 54</span>
+          <span class="ja">ソウル特別市 鍾路区 弼雲大路 54</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 청와대 납품으로도 알려진 옛날식 빵집. 화려하지 않지만 한국인 모두가 그리워하는 ‘추억의 맛’이 살아 있습니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> かつて大統領府にも納品していた老舗。派手さはないものの、韓国の人々が懐かしむ“あの頃の味”が今も息づいています。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">간판 메뉴는 <b>콘브레드(옥수수빵)</b>와 <b>고로케</b>. 따뜻할 때 드시면 가장 맛있습니다. 작은 가게라 포장이 기본입니다.</span>
+        <span class="ja">看板は<b>コーンブレッド（とうもろこしパン）</b>と<b>コロッケ</b>。温かいうちが一番おいしいです。小さなお店なので、基本はテイクアウトになります。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://naver.me/FiPEesXW"
+         data-google="https://www.google.com/maps/search/?api=1&query=%ED%9A%A8%EC%9E%90%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">쁘띠통</span>
+        <span class="ja">プチトン（Petit Tong）</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">서촌의 정성스런 모던 베이커리</span>
+        <span class="ja">西村の心のこもったモダンベーカリー</span>
+      </p>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 종로구 자하문로6길 11-9</span>
+          <span class="ja">ソウル特別市 鍾路区 紫霞門路6ギル 11-9</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 한적한 골목에 자리한 작은 빵집. 매일 아침 직접 구워내는 페이스트리와 식빵이 일품으로, 줄을 서서 기다리는 단골이 많습니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> 静かな路地にたたずむ小さなパン屋。毎朝焼き上げるペストリーと食パンが絶品で、行列ができる常連客にも愛される一軒です。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">크루아상·소금빵·식빵을 추천합니다. 효자베이커리와 도보 5–8분 거리라 함께 방문하면 ‘서촌 빵 산책’이 완성됩니다.</span>
+        <span class="ja">クロワッサン・塩パン・食パンがおすすめ。ヒョジャベーカリーから徒歩5〜8分なので、合わせて立ち寄れば“西村パン散歩”が完成します。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://naver.me/5748mxwt"
+         data-google="https://www.google.com/maps/search/?api=1&query=%EC%81%98%EB%9D%A0%ED%86%B5+%EC%84%9C%EC%B4%8C"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">태극당 본점 — 장충동</span>
+        <span class="ja">テグッタン 本店 — 奨忠洞（チャンチュンドン）</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">장충동 80년 노포 베이커리</span>
+        <span class="ja">奨忠洞の80年続く老舗ベーカリー</span>
+      </p>
+      <div class="badges">
+        <span class="badge-pill badge-since">SINCE 1946</span>
+        <span class="badge-pill badge-top">SEOUL OLDEST BAKERY</span>
+        <span class="badge-pill badge-top">KOREA TOP 3</span>
+      </div>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 중구 동호로24길 7</span>
+          <span class="ja">ソウル特別市 中区 東湖路24キル 7</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="ic">🚇</span>
+        <span>
+          <span class="ko">동대입구역 6번 출구 도보 3분 / 명동에서 지하철 한 정거장</span>
+          <span class="ja">東大入口駅 6番出口から徒歩3分/明洞から地下鉄ひと駅</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 1946년 명동에서 시작해 80년을 이어온, 서울에서 가장 오래된 빵집. 1970년대 그대로의 가게 인테리어와 옛 그릇, 옛 글씨체의 메뉴판이 그대로 남아 있어 일본의 옛 喫茶店(킷사텐)·노포 분위기를 좋아하시는 분께 깊은 추억의 시간을 선물합니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> 1946年に明洞で開業し、80年続くソウル最古のパン屋。1970年代そのままの店内、昔の食器、レトロな書体のメニューが今も残り、日本の昔ながらの喫茶店や老舗の雰囲気がお好きな方には深い郷愁の時間をお届けします。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">대표 메뉴는 <b>모나카 아이스크림</b>, <b>사라다빵(샐러드빵)</b>, <b>버터크림 케이크</b>, <b>야채사라다</b>. 매장 안에서 커피와 함께 드실 수 있어 산책 중 잠시 쉬어가기 좋습니다. 일본의 ‘다이쇼·쇼와 시대 양과자’와 같은 결의 옛 과자들이라, 50대 이상 일본 손님께서 가장 반가워하시는 곳 중 하나입니다.</span>
+        <span class="ja">看板メニューは<b>モナカアイスクリーム</b>、<b>サラダパン</b>、<b>バタークリームケーキ</b>、<b>野菜サラダ</b>。店内でコーヒーと一緒にいただけるので、散策の途中の休憩にもぴったりです。日本でいう“大正・昭和の洋菓子”の趣で、50代以上の日本のお客様に特に喜ばれる一軒です。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://map.naver.com/p/search/%ED%83%9C%EA%B7%B9%EB%8B%B9%20%EC%9E%A5%EC%B6%A9%EB%8F%99"
+         data-google="https://www.google.com/maps/search/?api=1&query=%ED%83%9C%EA%B7%B9%EB%8B%B9+%EC%9E%A5%EC%B6%A9%EB%8F%99%EB%B3%B8%EC%A0%90"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+  </section>
+
+  <!-- ============ 간장게장 ============ -->
+  <section class="theme">
+    <div class="theme-head">
+      <div class="theme-icon">🦀</div>
+      <div>
+        <h2 class="theme-title">
+          <span class="ko">간장게장</span>
+          <span class="ja">カンジャンケジャン</span>
+        </h2>
+        <p class="theme-sub">
+          <span class="ko">간장에 절인 생게 — 한국의 ‘밥도둑’</span>
+          <span class="ja">生ガニの醤油漬け ― 韓国の“ご飯泥棒”</span>
+        </p>
+      </div>
+    </div>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">한가람 본점</span>
+        <span class="ja">ハンガラム 本店</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">남대문 골목의 간장게장 노포</span>
+        <span class="ja">南大門の路地裏にある老舗</span>
+      </p>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 중구 남대문로5길 25</span>
+          <span class="ja">ソウル特別市 中区 南大門路5ギル 25</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="ic">🚇</span>
+        <span>
+          <span class="ko">명동역에서 도보 10분 / 회현역 5번 출구 도보 3분</span>
+          <span class="ja">明洞駅から徒歩10分/会賢駅 5番出口から徒歩3分</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 짠맛이 강하지 않고 단맛이 적당해 일본 손님들에게 평이 좋습니다. ‘밥도둑’이라는 별명처럼 따뜻한 흰밥과 환상의 궁합입니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> 塩辛さが強すぎず、ほのかな甘みがあって日本のお客様にも好評。“ご飯泥棒”の愛称どおり、温かい白いご飯との相性は抜群です。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">간장게장 정식을 주문하면 다양한 반찬이 함께 제공됩니다. 게딱지에 밥을 비벼 드시는 것이 한국식 정통입니다. 생것이라 위장이 약하신 분은 양 조절을 권합니다.</span>
+        <span class="ja">カンジャンケジャン定食を頼むと、たくさんのおかずが付いてきます。カニの甲羅にご飯を入れて混ぜて食べるのが韓国流の本場の味わい方。生ものなので、胃腸が弱い方は量を加減してお召し上がりください。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://naver.me/GntC9m37"
+         data-google="https://www.google.com/maps/search/?api=1&query=%ED%95%9C%EA%B0%80%EB%9E%8C+%EB%B3%B8%EC%A0%90+%EB%82%A8%EB%8C%80%EB%AC%B8"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+
+    <article class="card">
+      <h3 class="card-name">
+        <span class="ko">진미식당 — 공덕</span>
+        <span class="ja">チンミシクタン — 孔徳（コンドク）</span>
+      </h3>
+      <p class="card-name-sub">
+        <span class="ko">서산 암꽃게로 차리는 게장 정식</span>
+        <span class="ja">瑞山産メスのワタリガニで仕立てるカンジャンケジャン定食</span>
+      </p>
+      <div class="badges">
+        <span class="badge-pill badge-michelin">⭐ MICHELIN GUIDE SEOUL</span>
+        <span class="badge-pill badge-bluer">🎀 BLUE RIBBON SURVEY</span>
+        <span class="badge-pill badge-top">SEOUL TOP 3</span>
+      </div>
+      <div class="row">
+        <span class="ic">📍</span>
+        <span>
+          <span class="ko">서울 마포구 마포대로 186-6</span>
+          <span class="ja">ソウル特別市 麻浦区 麻浦大路 186-6</span>
+        </span>
+      </div>
+      <div class="row">
+        <span class="ic">🚇</span>
+        <span>
+          <span class="ko">애오개역 4번 출구 도보 5분 / 명동에서 택시 약 15분</span>
+          <span class="ja">エオゲ駅 4番出口から徒歩5分/明洞からタクシーで約15分</span>
+        </span>
+      </div>
+      <div class="reason">
+        <span class="ko"><b>추천 이유 ―</b> 미쉐린 가이드 서울과 블루리본 서베이 양쪽에서 모두 선정된 간장게장 명가. 가정집을 개조한 차분한 공간에서, ‘서울 3대 간장게장’이라 불리는 한 그릇을 정성스레 대접받으실 수 있습니다.</span>
+        <span class="ja"><b>おすすめ理由 ―</b> ミシュランガイド・ソウルとブルーリボンサーベイの両方に選ばれたカンジャンケジャンの名店。一軒家を改装した落ち着いた空間で、“ソウル三大カンジャンケジャン”と呼ばれる一皿を、心のこもったおもてなしとともに味わえます。</span>
+      </div>
+      <p class="desc">
+        <span class="ko">서산산 암꽃게의 알이 가득. 짠맛이 강하지 않고 단맛·감칠맛이 균형 잡혀 있어 일본 손님 평이 매우 좋습니다. <b>예약 필수</b>(주말은 한 달 전부터 마감되는 경우가 많습니다). 한가람보다 한 단계 격식 있는 ‘특별한 한 끼’를 원하실 때 추천드립니다.</span>
+        <span class="ja">瑞山（ソサン）産メスのワタリガニで、卵がたっぷり。塩辛さは抑えめで、甘みと旨みのバランスが絶妙、日本のお客様にも非常に好評です。<b>予約必須</b>（週末は1ヶ月前から満席になることも）。ハンガラムよりもう一段格式のある“特別な一食”をお考えの方におすすめです。</span>
+      </p>
+      <a class="map-btn"
+         data-naver="https://map.naver.com/p/search/%EC%A7%84%EB%AF%B8%EC%8B%9D%EB%8B%B9%20%EA%B3%B5%EB%8D%95"
+         data-google="https://www.google.com/maps/search/?api=1&query=%EC%A7%84%EB%AF%B8%EC%8B%9D%EB%8B%B9+%EA%B3%B5%EB%8D%95"
+         target="_blank" rel="noopener">
+        <span>🗺</span>
+        <span class="ko">지도로 길찾기</span>
+        <span class="ja">地図で見る</span>
+      </a>
+    </article>
+  </section>
+
+  <div class="footer">
+    <span class="ko">서울에서의 즐거운 식사가 되시길 바랍니다.</span>
+    <span class="ja">ソウルでの素敵なお食事になりますように。</span>
+  </div>
+</main>
+
+<script>
+  const body = document.body;
+
+  // language toggle
+  document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang-btn');
+      body.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-lang-btn]').forEach(b =>
+        b.classList.toggle('active', b === btn));
+    });
+  });
+
+  // map toggle
+  function applyMap(map) {
+    document.querySelectorAll('.map-btn').forEach(a => {
+      const url = a.getAttribute('data-' + map);
+      if (url) a.setAttribute('href', url);
+    });
+  }
+  applyMap('naver');
+  document.querySelectorAll('[data-map-btn]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const map = btn.getAttribute('data-map-btn');
+      body.setAttribute('data-map', map);
+      applyMap(map);
+      document.querySelectorAll('[data-map-btn]').forEach(b =>
+        b.classList.toggle('active', b === btn));
+    });
+  });
+</script>
+</body>
+</html>
