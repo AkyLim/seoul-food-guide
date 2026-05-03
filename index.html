@@ -17,6 +17,8 @@
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  section.theme { scroll-margin-top: 12px; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
                  "Apple SD Gothic Neo", "Yu Gothic", "Meiryo", "Malgun Gothic", sans-serif;
@@ -122,6 +124,61 @@
   .badge-bluer    { background: #1E5BB8; color: #fff; }
   .badge-since    { background: #6B4F2A; color: #fff; }
   .badge-top      { background: #2B6E4F; color: #fff; }
+
+  /* ===== Quick nav (메뉴 바로가기) ===== */
+  nav.quicknav {
+    max-width: 760px;
+    margin: 14px auto 0;
+    padding: 18px 18px 16px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  }
+  .quicknav-title {
+    font-size: 18px;
+    margin: 0 0 12px;
+    color: var(--primary);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .quicknav-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .qn-chip {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 14px;
+    background: var(--primary-soft);
+    border: 1px solid #FFD3B8;
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 16.5px;
+    line-height: 1.3;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s;
+  }
+  .qn-chip:hover { background: #FFDBC4; }
+  .qn-chip:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  }
+  .qn-emoji {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .qn-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--muted);
+    background: #fff;
+    border-radius: 999px;
+    padding: 3px 8px;
+    font-weight: 700;
+    border: 1px solid var(--line);
+  }
 
   /* ===== Tips (사이트 사용법) ===== */
   section.tips {
@@ -312,8 +369,51 @@
     </ul>
   </section>
 
+  <!-- ============ 메뉴 바로가기 ============ -->
+  <nav class="quicknav" aria-label="menu shortcut">
+    <h2 class="quicknav-title">
+      <span>🍽</span>
+      <span class="ko">메뉴 바로가기</span>
+      <span class="ja">メニューへジャンプ</span>
+    </h2>
+    <div class="quicknav-grid">
+      <a class="qn-chip" href="#sec-yukhoe">
+        <span class="qn-emoji">🥩</span>
+        <span>
+          <span class="ko">육회·소고기</span>
+          <span class="ja">ユッケ・牛肉</span>
+        </span>
+        <span class="qn-count">2</span>
+      </a>
+      <a class="qn-chip" href="#sec-naengmyeon">
+        <span class="qn-emoji">🍜</span>
+        <span>
+          <span class="ko">냉면</span>
+          <span class="ja">冷麺</span>
+        </span>
+        <span class="qn-count">3</span>
+      </a>
+      <a class="qn-chip" href="#sec-bread">
+        <span class="qn-emoji">🥐</span>
+        <span>
+          <span class="ko">빵</span>
+          <span class="ja">パン</span>
+        </span>
+        <span class="qn-count">3</span>
+      </a>
+      <a class="qn-chip" href="#sec-gejang">
+        <span class="qn-emoji">🦀</span>
+        <span>
+          <span class="ko">간장게장</span>
+          <span class="ja">カンジャンケジャン</span>
+        </span>
+        <span class="qn-count">2</span>
+      </a>
+    </div>
+  </nav>
+
   <!-- ============ 육회 / 소고기 ============ -->
-  <section class="theme">
+  <section class="theme" id="sec-yukhoe">
     <div class="theme-head">
       <div class="theme-icon">🥩</div>
       <div>
@@ -416,7 +516,7 @@
   </section>
 
   <!-- ============ 냉면 ============ -->
-  <section class="theme">
+  <section class="theme" id="sec-naengmyeon">
     <div class="theme-head">
       <div class="theme-icon">🍜</div>
       <div>
@@ -591,7 +691,7 @@
   </section>
 
   <!-- ============ 빵 ============ -->
-  <section class="theme">
+  <section class="theme" id="sec-bread">
     <div class="theme-head">
       <div class="theme-icon">🥐</div>
       <div>
@@ -727,7 +827,7 @@
   </section>
 
   <!-- ============ 간장게장 ============ -->
-  <section class="theme">
+  <section class="theme" id="sec-gejang">
     <div class="theme-head">
       <div class="theme-icon">🦀</div>
       <div>
